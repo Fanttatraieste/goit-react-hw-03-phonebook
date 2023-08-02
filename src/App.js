@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const savedStorage = localStorage.getItem('storage');
 let parsedStorage = JSON.parse(savedStorage);
 parsedStorage = !parsedStorage ? [] : parsedStorage;
@@ -9,21 +9,21 @@ export default function App() {
   function handleContactList(newContact) {
     console.log(newContact);
     setContactList(contactList => [...contactList, newContact]);
+
+    //console.log(contactList);
+  }
+
+  useEffect(() => {
     const storage = {
       list: contactList,
     };
     localStorage.setItem('storage', JSON.stringify(storage));
-    //console.log(contactList);
-  }
+  }, [contactList]);
 
   function handleDeleteContact(number) {
     setContactList(contactList =>
       contactList.filter(contact => contact.number !== number)
     );
-    const storage = {
-      list: contactList,
-    };
-    localStorage.setItem('storage', JSON.stringify(storage));
   }
 
   return (
