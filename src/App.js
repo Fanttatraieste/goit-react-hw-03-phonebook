@@ -1,9 +1,10 @@
 import { useState } from 'react';
 const savedStorage = localStorage.getItem('storage');
-const parsedStorage = JSON.parse(savedStorage);
+let parsedStorage = JSON.parse(savedStorage);
+parsedStorage = !parsedStorage ? [] : parsedStorage;
 
 export default function App() {
-  const [contactList, setContactList] = useState(parsedStorage.list || []);
+  const [contactList, setContactList] = useState(parsedStorage.list);
 
   function handleContactList(newContact) {
     console.log(newContact);
