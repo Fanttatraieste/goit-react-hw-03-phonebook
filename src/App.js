@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 const savedStorage = localStorage.getItem('storage');
-let parsedStorage = JSON.parse(savedStorage);
-parsedStorage = !savedStorage ? { list: [] } : parsedStorage;
+
+let parsedStorage;
+if (savedStorage === null) {
+  console.log('E prima oara pe aicea ?');
+  parsedStorage = { list: [] };
+} else parsedStorage = JSON.parse(savedStorage);
 
 export default function App() {
   const [contactList, setContactList] = useState(parsedStorage.list);
