@@ -3,7 +3,7 @@ const savedStorage = localStorage.getItem('storage');
 const parsedStorage = JSON.parse(savedStorage);
 
 export default function App() {
-  const [contactList, setContactList] = useState(parsedStorage.list);
+  const [contactList, setContactList] = useState(parsedStorage.list || []);
 
   function handleContactList(newContact) {
     console.log(newContact);
